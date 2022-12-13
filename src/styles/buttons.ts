@@ -1,13 +1,47 @@
-import {heightNormal, maxWidth, minWidth} from "./sizes";
+import {border} from "./borders";
+import {aCenterMiddle} from "./markups";
+import {
+    bgDanger,
+    bgDangerLight,
+    bgPrimary,
+    bgPrimaryLight,
+    bgSecondary,
+    bgSecondaryLight, bgSuccess, bgSuccessLight,
+    bgWarning,
+    bgWarningLight
+} from "./colors";
+import {textPrimary} from "./text";
+import {mainSize} from "./sizes";
 
-export const btnWidth = {
-    minWidth,
-    maxWidth
+export const btnBorder = {}
+
+export const btnWrapper = {
+    ...aCenterMiddle,
+    ...border,
+    ...mainSize
 }
 
-export const btnStyle = {
-    ...heightNormal,
-    ...btnWidth,
-    zIndex: 3,
-    elevation: 3,
+export const btnPrimary = {
+    font: {...textPrimary, color: '#fff'},
+    background: [bgPrimary.backgroundColor, bgPrimary.backgroundColor, bgPrimaryLight.backgroundColor]
+}
+
+export const btnSecondary = {
+    font: {...textPrimary, color: '#fff'},
+    background: [bgSecondaryLight.backgroundColor, bgSecondary.backgroundColor, bgSecondaryLight.backgroundColor]
+}
+
+export const btnWarning = {
+    font: {...textPrimary, color: '#fff'},
+    background: [bgWarningLight.backgroundColor, bgWarning.backgroundColor, bgWarningLight.backgroundColor]
+}
+
+export const btnDanger = {
+    font: {...textPrimary, color: '#fff'},
+    background: [bgDangerLight.backgroundColor, bgDanger.backgroundColor, bgDangerLight.backgroundColor]
+}
+
+export const btnSuccess = {
+    font: {...textPrimary, color: '#fff'},
+    background: [bgSuccessLight.backgroundColor, bgSuccess.backgroundColor, bgSuccessLight.backgroundColor]
 }

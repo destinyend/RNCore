@@ -1,28 +1,14 @@
-import {p1, p3} from "./margins";
-import {fontComment, fontMain, fontTitle} from "./fonts";
+import {p1, p2, p3, ph1, ph2, pv1} from "./margins";
+import {h1Style, textComment, textPrimary} from "./text";
 
-export const mainWidth = 200
-export const minWidth = 40
-export const maxWidth = 200
 
-export const heightSmall = {
-    height: fontComment.fontSize + p1.padding,
-    maxHeight: fontComment.fontSize + p1.padding,
-    minHeight: fontComment.fontSize + p1.padding
-}
+export const mainHeight = fixHeight(30)
 
-export const heightNormal = {
-    height: fontMain.fontSize + p1.padding,
-    maxHeight: fontMain.fontSize + p1.padding,
-    minHeight: fontMain.fontSize + p1.padding
-}
+export const mainWidth = {minWidth: 40, width: 200, maxWidth: 200}
 
-export const heightBig = {
-    height: fontTitle.fontSize + p3.padding,
-    maxHeight: fontTitle.fontSize + p3.padding,
-    minHeight: fontTitle.fontSize + p3.padding
-}
+export const mainPadding = {...ph2, ...pv1}
 
+export const mainSize = {...mainPadding, ...mainHeight, ...mainWidth}
 export function fixHeight(height: number) {
     return {minHeight: height, height, maxHeight: height}
 }

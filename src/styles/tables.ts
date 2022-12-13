@@ -1,5 +1,5 @@
 import {borderColor, borderStyle, borderWidth, noRadius} from "./borders";
-import {bold} from "./fonts";
+import {bold} from "./text";
 import {p1, pr3} from "./margins";
 
 export const tableBorder = {...borderWidth, ...borderColor, ...noRadius, ...borderStyle}

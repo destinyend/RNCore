@@ -1,15 +1,24 @@
-export const fRow = {flexDirection: 'row'}
-export const fWrap = {flexWrap: 'wrap'}
-export const noWrap = {flexWrap: 'nowrap'}
-export const fStart = {alignItems: 'flex-start', textAlign: 'left'}
-export const fEnd = {alignItems: 'flex-end', textAlign: 'right'}
-export const fCenter = {alignItems: 'center', textAlign: 'center'}
+export const fRow: object = {flexDirection: 'row'}
+export const fWrap: object = {flexWrap: 'wrap'}
+export const noWrap: object = {flexWrap: 'nowrap'}
 
-export const jStart = {justifyContent: 'flex-start'}
-export const jEnd = {justifyContent: 'flex-end'}
-export const jCenter = {justifyContent: 'center'}
-export const jAround = {justifyContent: 'space-around'}
-export const jBetween = {justifyContent: 'space-between'}
+export const aLeft: object = {}
+export const aCenter: object = {textAlign: 'center'}
+export const aRight: object = {}
+export const aTop: object = {}
+export const aMiddle: object = {justifyContent: 'center', textAlignVertical: 'middle'}
+export const aBottom: object = {}
+
+export const aLeftMiddle: object = {...aLeft, ...aMiddle}
+export const aCenterMiddle: object = {justifyContent: 'center', }
+export const aRightMiddle: object = {...aRight, ...aMiddle}
+
+export const aLeftBottom: object = {...aLeft, ...aBottom}
+export const aCenterBottom: object = {...aCenter, ...aBottom}
+export const aRightBottom: object = {...aRight, ...aBottom}
+
+export const aAround = {justifyContent: 'space-around'}
+export const aBetween = {justifyContent: 'space-between'}
 
 export const flex1 = {display: 'flex', flex: 1}
 export const flex2 = {display: 'flex', flex: 2}

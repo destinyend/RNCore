@@ -26,6 +26,18 @@ export const success = {
     color: "#1e7502"
 }
 
+export const successLight = {
+    color: "#32be04"
+}
+
+export const warning = {
+    color: "#9b4d02"
+}
+
+export const warningLight = {
+    color: "#ff7d00"
+}
+
 export const bgPrimary = {
     backgroundColor: primary.color
 }
@@ -48,6 +60,21 @@ export const bgDanger = {
 
 export const bgDangerLight = {
     backgroundColor: dangerLight.color
+}
+export const bgWarning = {
+    backgroundColor: warning.color
+}
+
+export const bgWarningLight = {
+    backgroundColor: warningLight.color
+}
+
+export const bgSuccess = {
+    backgroundColor: success.color
+}
+
+export const bgSuccessLight = {
+    backgroundColor: successLight.color
 }
 
 export const bgTransparent = {

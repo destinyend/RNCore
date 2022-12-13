@@ -5,13 +5,13 @@ import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 
 export interface IFA {
     icon: IconDefinition
-    style: object
+    style?: object
     visible?: boolean
 }
 
 export default function (props: IFA) {
-    if (!props.visible) return null
-    if (!props.icon) return <Text>icon</Text>
+    if (props.visible === false) return null
+    if (!props.icon) return <Text style={props.style}>icon</Text>
     if (Platform.OS === 'web') {
         return <FontAwesomeReact icon={props.icon} style={props.style}/>;
     }
