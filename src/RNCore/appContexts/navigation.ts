@@ -14,7 +14,7 @@ export interface INavigation {
 
 export const initialNavigationState: INavigationState = {
     stack: [],
-    current: screen_list[0].name
+    current: screen_list[2].name
 }
 
 export const initialNavigation: INavigation = {

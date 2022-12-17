@@ -1,44 +1,48 @@
 import React from "react";
-import {
-    bgWhite,
-    border,
-    field, fieldWidth, heightNormal,
-    p0
-} from "../../const";
 import {Picker} from '@react-native-picker/picker';
 import {Platform, StyleSheet, View} from "react-native";
+import {p0} from "../../styles/margins";
+import {field, TLabelPosition} from "../../styles/fields";
+import {flattenStyle} from "../component";
+import {fRow} from "../../styles/markups";
+import {TextPrimary} from "../text/text";
+import Label from "./Label";
 
-interface SelectInterface {
-    value?: string | number,
-    items?: { label: string, value: string | number }[],
-    onChange?: (any) => void
-    style?: object
-    editable?: boolean
+interface IItem {
+    label: string
+    value: string
 }
 
-export default function ({style = null, value = null, items = [], onChange = null, editable = true}: SelectInterface) {
-    if (Platform.OS === 'android') return <View style={[border, bgWhite, heightNormal, style]}>
-        <Picker
-            enabled={editable}
-            style={[
-                fieldWidth,
-                heightNormal,
-                {borderColor: 'transparent', marginTop: -15}
-            ]}
-            selectedValue={value}
-            onValueChange={onChange}
-        >
-            {items.map((item, key) => <Picker.Item key={key} {...item}/>)}
-        </Picker>
-    </View>
+interface ISelect {
+    visible?: boolean
+    label?: string
+    value: string
+    items: IItem[]
+    onChange?: (value: string) => void
+    style?: object
+    editable?: boolean
+    labelLeft?: boolean
+    labelStyle?: object
+    labelPosition?: TLabelPosition
+}
 
-    return <Picker
-        enabled={editable}
-        style={StyleSheet.flatten([field, p0, style])}
-        selectedValue={value}
-        onValueChange={onChange}
+export default function (props: ISelect) {
+    if (props.visible === false) return null
+    return <Label
+        labelStyle={props.labelStyle}
+        labelPosition={props.labelPosition}
+        style={props.style}
+        label={props.label}
     >
-        {items.map((item, key) => <Picker.Item key={key} {...item}/>)}
+    <Picker
+        enabled={props.editable}
+        // @ts-ignore
+        style={field}
+        selectedValue={String(props.value)}
+        onValueChange={props.onChange}
+    >
+        {props.items.map((item, key) => <Picker.Item key={key} {...item}/>)}
     </Picker>
+    </Label>
 }
 

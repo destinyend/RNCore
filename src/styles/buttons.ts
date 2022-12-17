@@ -1,5 +1,4 @@
 import {border} from "./borders";
-import {aCenterMiddle} from "./markups";
 import {
     bgDanger,
     bgDangerLight,
@@ -11,14 +10,18 @@ import {
     bgWarningLight
 } from "./colors";
 import {textPrimary} from "./text";
-import {mainSize} from "./sizes";
+import {mainHeight, mainWidth} from "./sizes";
+import {mainPadding} from "./margins";
+import {aCenter, jCenter} from "./markups";
 
 export const btnBorder = {}
 
 export const btnWrapper = {
-    ...aCenterMiddle,
+    ...aCenter,
+    ...jCenter,
     ...border,
-    ...mainSize
+    ...mainHeight,
+    ...mainPadding
 }
 
 export const btnPrimary = {

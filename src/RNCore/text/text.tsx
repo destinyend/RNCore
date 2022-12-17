@@ -1,7 +1,6 @@
 import {Text, TouchableOpacity} from 'react-native'
 import {textDanger, textPrimary, textSecondary, textSuccess, textWarning} from "../../styles/text";
 import {flattenStyle} from "../component";
-import {pointer} from "../../styles/cursors";
 
 export interface IText {
     style?: object | object[] | null | undefined

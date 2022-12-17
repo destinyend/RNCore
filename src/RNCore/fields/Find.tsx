@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {btnWidth, fieldWidth, fixWidth, stickLeft, stickRight} from "../../const";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import TextField from "./TextField";
+import TextField from "./Field";
 import {Row} from "../markup/markup";
 import BtnPrimary from "../buttons/BtnPrimary";
 

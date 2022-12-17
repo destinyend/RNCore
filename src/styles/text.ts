@@ -1,7 +1,7 @@
-import {danger, primary, secondary, success, warning} from "./colors";
-import {aCenter, aCenterMiddle, aMiddle} from "./markups";
-import {p1, ph1, ph2, pv1} from "./margins";
-import {fixHeight, mainHeight, mainPadding, mainSize} from "./sizes";
+import {danger, secondary, secondaryLight, success, warning} from "./colors";
+import {fixHeight, mainHeight} from "./sizes";
+import {mainPadding} from "./margins";
+import {aCenter, jCenter} from "./markups";
 
 export const bold = {fontWeight: 'bold'}
 export const italic = {fontStyle: 'italic'}
@@ -14,8 +14,10 @@ export const textShadow = {
 
 export const textMain = {
     fontSize: '100%',
-    ...aMiddle,
-    ...mainSize
+    ...mainHeight,
+    ...mainPadding,
+    ...aCenter,
+    ...jCenter
 }
 
 export const textPrimary = {
@@ -49,39 +51,34 @@ export const textComment = {
     textStyle: 'italic'
 }
 
+export const h6Style = {
+    ...textMain,
+    ...bold
+}
+
 export const h1Style = {
-    ...mainSize,
-    ...fixHeight(mainSize.height*1.5),
-    color: '#222',
-    textStyle: 'bold'
+    ...h6Style,
+    ...fixHeight(textMain.height*1.5),
 }
 
 export const h2Style = {
-    fontSize: textMain.fontSize * 1.4,
-    color: '#222',
-    textStyle: 'bold'
+    ...h6Style,
+    ...fixHeight(textMain.height*1.4),
 }
 
 export const h3Style = {
-    fontSize: textMain.fontSize * 1.3,
-    color: '#222',
-    textStyle: 'bold'
+    ...h6Style,
+    ...fixHeight(textMain.height*1.3),
 }
 
 export const h4Style = {
-    fontSize: textMain.fontSize * 1.2,
-    color: '#222',
-    textStyle: 'bold'
+    ...h6Style,
+    ...fixHeight(textMain.height*1.2),
 }
 
 export const h5Style = {
-    fontSize: textMain.fontSize * 1.1,
-    color: '#222',
-    textStyle: 'bold'
+    ...h6Style,
+    ...fixHeight(textMain.height*1.1),
 }
 
-export const h6Style = {
-    fontSize: textMain.fontSize,
-    color: '#222',
-    textStyle: 'bold'
-}
+export const placeholderColor = secondary.color

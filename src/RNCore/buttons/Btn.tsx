@@ -3,11 +3,10 @@ import {LinearGradient} from "expo-linear-gradient";
 import FA from "../static/FA";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 import {flattenStyle} from "../component";
-import {fieldWidth} from "../../styles/fields";
-import {aCenterMiddle, flex1} from "../../styles/markups";
+import {flex1} from "../../styles/markups";
 import {btnDanger, btnSecondary, btnSuccess, btnWarning, btnWrapper} from "../../styles/buttons";
-import {border} from "../../styles/borders";
 import {btnPrimary} from "../../styles/buttons";
+import {mainWidth} from "../../styles/sizes";
 
 export interface IBtnBase {
     title?: string
@@ -41,7 +40,7 @@ export default function Btn(props: IBtnBase) {
     let wrpStyle
     switch (props.width) {
         case 'field':
-            wrpStyle = flattenStyle([fieldWidth, btnWrapper, props.wrpStyle])
+            wrpStyle = flattenStyle([mainWidth, btnWrapper, props.wrpStyle])
             break
         case 'flex':
             wrpStyle = flattenStyle([btnWrapper, props.borderStyle, flex1])

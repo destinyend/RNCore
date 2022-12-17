@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.11",
+    "init-typescript-app": "^1.2.4"
+  },
+  "name": "sugar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/destinyend/sugar.git"
+  },
+  "author": "Aleksey Ardov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/destinyend/sugar/issues"
+  },
+  "homepage": "https://github.com/destinyend/sugar#readme",
+  "description": ""
+}

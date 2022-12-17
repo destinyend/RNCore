@@ -2,13 +2,12 @@ import {TouchableOpacity, View} from "react-native";
 import {flex1, flex2, flex3, flex4, flex5, flex6, fRow, fWrap} from "../../styles/markups";
 import {flattenStyle, IComponent} from "../component";
 import {TextPrimary} from "../text/text";
-import {bgPrimary, bgSecondaryLight} from "../../styles/colors";
 
 export function RNView(props: IComponent) {
     if (props.visible === false) return null
     const style = flattenStyle(props.style)
     const children = ['string', 'number'].includes(typeof props.children) ?
-        <TextPrimary style={bgSecondaryLight}>{props.children}</TextPrimary>
+        <TextPrimary>{props.children}</TextPrimary>
         :
         props.children
     if (props.onPress) return <TouchableOpacity style={style}>{children}</TouchableOpacity>
