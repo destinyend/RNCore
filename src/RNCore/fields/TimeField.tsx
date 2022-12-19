@@ -2,7 +2,7 @@ import {Platform, Text, View, TouchableOpacity} from "react-native";
 import {useState} from "react";
 import {faCalendar, faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import DateTimePicker from '@react-native-community/datetimepicker'
-import {DatePickerModal} from 'react-native-paper-dates';
+import {DatePickerModal, TimePickerModal} from 'react-native-paper-dates';
 import Date from "../text/Date"
 import {EDate} from "../sugar/date";
 import {field, TLabelPosition} from "../../styles/fields";
@@ -14,33 +14,33 @@ import {textPrimary} from "../../styles/text";
 import Label from "./Label";
 import {BtnPrimary} from "../buttons/Btn";
 import {stickLeft, stickRight} from "../../styles/margins";
+import Time from "../text/Time";
 import {IInputField} from "./InputField";
 
 
-interface IDateField extends Omit<IInputField, 'value' | 'onFocus'| 'onBlur'| 'onKey'| 'onChange'>{
+interface ITimeField extends Omit<IInputField, 'value' | 'onFocus'| 'onBlur'| 'onKey'| 'onChange'> {
     value?: string
     onChange?: (date: string) => void
     useButtons?: boolean
     isOpen?: boolean
-    showYear?: boolean
+    showSeconds?: boolean
 }
 
-export default function DateField(props: IDateField) {
+export default function DateField(props: ITimeField) {
     const [open, setOpen] = useState(!!props.isOpen)
     if (props.visible === false) return null
 
     const value = props.value ? new EDate(props.value) : new EDate()
 
     function onChange(value: any) {
-        if (props.onChange) props.onChange(new EDate(value).isoDate())
+        if (props.onChange) props.onChange(new EDate(value).isoTime(props.showSeconds === true))
         setOpen(false)
     }
 
-    function changeDay(value: number) {
-        const date: EDate = props.value ? new EDate(props.value) : new EDate()
-        date.change({days: value})
+    function changeTime(minutes: number) {
+        value.change({minutes})
         // @ts-ignore
-        props.onChange(date.isoDate())
+        props.onChange(date.isoTime(props.showSeconds === true))
     }
     return <Label
         labelStyle={props.labelStyle}
@@ -51,16 +51,16 @@ export default function DateField(props: IDateField) {
         <BtnPrimary
             visible={props.visible === true}
             icon={faChevronLeft}
-            onPress={() => changeDay(-1)}
+            onPress={() => changeTime(-1)}
             style={stickRight}
         />
-        <Date
+        <Time
             onPress={() => setOpen(true)}
             style={field}
-            showYear={props.showYear}
+            showSeconds={props.showSeconds}
         >
             {props.value}
-        </Date>
+        </Time>
         <Picker
             value={value}
             onChange={onChange}
@@ -71,7 +71,7 @@ export default function DateField(props: IDateField) {
             visible={props.visible === true}
             icon={faChevronRight}
             style={stickLeft}
-            onPress={() => changeDay(1)}
+            onPress={() => changeTime(1)}
         />
     </Label>
 }
@@ -86,14 +86,13 @@ interface IPicker {
 function Picker(props: IPicker) {
     if (!props.open) return null
     if (Platform.OS === 'web') {
-        return <DatePickerModal
+        return <TimePickerModal
             locale="ru"
-            mode="single"
             visible={props.open}
             onDismiss={() => props.setOpen(false)}
             // @ts-ignore
             date={props.value}
-            onChange={params => props.onChange(String(params.date))}
+            onChange={(params: { toString: () => any; }) => props.onChange(String(params.toString()))}
             label={''}
             saveLabel=""
             onConfirm={() => props.setOpen(false)}
@@ -103,7 +102,7 @@ function Picker(props: IPicker) {
         testID="dateTimePicker"
         // @ts-ignore
         value={props.value}
-        mode={'date'}
+        mode={'time'}
         display="default"
         onChange={(event, newDate) => props.onChange(String(newDate))}
     />

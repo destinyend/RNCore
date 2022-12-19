@@ -8,7 +8,7 @@ export interface IComponent {
     disabled?: boolean
 }
 
-export function flattenStyle(args: object | object[] | null | undefined): object|null {
+export function flattenStyle(args: object | object[] | null | undefined): object {
     if (Array.isArray(args)) {
         let styles: object = {}
         for (const el of args) {
@@ -19,5 +19,5 @@ export function flattenStyle(args: object | object[] | null | undefined): object
     if (args) {
         return args
     }
-    return null
+    return {}
 }

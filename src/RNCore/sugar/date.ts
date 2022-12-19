@@ -22,7 +22,7 @@ export class EDate extends Date {
         )
     }
 
-    isoDate() {
+    isoDate()  {
         let month = String(this.getMonth() + 1)
         let day = String(this.getDate())
         return this.getFullYear() + '-' + zfill(month) + '-' + zfill(day)

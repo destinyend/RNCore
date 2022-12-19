@@ -1,44 +1,34 @@
 import React from "react";
-import {
-    fCenter,
-    fontMain as fontBig, heightNormal,
-    lessDesktop,
-    primary,
-    secondary
-} from "../../const";
 import {faToggleOff, faToggleOn} from "@fortawesome/free-solid-svg-icons";
 import {Text, StyleSheet, Platform} from "react-native";
-import {Flex, PressRow} from "../markup/markup";
 import FA from "../static/FA";
+import {Row} from "../markup/markup";
+import {flattenStyle} from "../component";
+import Label from "./Label";
+import {primary, secondary} from "../../styles/colors";
 
-interface ToggleInterface {
+interface IToggle {
     selected?: boolean,
-    onPress?: (boolean) => void,
+    onPress?: (value: boolean) => void,
     visible?: boolean,
     style?: object,
-    text?: string
+    label?: string
 }
 
-export default function ({
-                             selected = false,
-                             onPress = null,
-                             visible = true,
-                             style = null,
-                             text = ''
-                         }: ToggleInterface) {
-    if (!visible) return null
-    let fontMultiple = 1.5
-    if (lessDesktop()) fontMultiple = Platform.OS === 'web' ? 1: 2
-    return <PressRow
-        style={StyleSheet.flatten([fCenter, fCenter, heightNormal, style])}
-        onPress={onPress}
+export default function (props: IToggle) {
+    if (props.visible === false) return null
+    return <Label
+        style={flattenStyle([props.style])}
+        onPress={() => {
+            if (props.onPress) props.onPress(!props.selected)
+        }}
     >
         <FA
-            icon={selected ? faToggleOn : faToggleOff}
+            icon={props.selected ? faToggleOn : faToggleOff}
             // @ts-ignore
-            style={[{color: selected ? primary.color : secondary.color, fontSize: fontBig.fontSize * fontMultiple}, style]}
-            size={fontBig.fontSize}
+            style={flattenStyle([{
+                color: props.selected ? primary.color : secondary.color,
+            }, props.style])}
         />
-        <Text> {text}</Text>
-    </PressRow>
+    </Label>
 }

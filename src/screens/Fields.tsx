@@ -1,5 +1,5 @@
 import {Col, Col1, Col3, Row, Row1, Row2, Row3} from "../RNCore/markup/markup";
-import {NumberFiled, TextField} from "../RNCore/fields/base_fields";
+import {NumberFiled, TextField} from "../RNCore/fields/TextField";
 import {useState} from "react";
 import Select from "../RNCore/fields/Select";
 import {mt1, mt2} from "../styles/margins";

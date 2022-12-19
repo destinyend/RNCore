@@ -1,5 +1,5 @@
 import {RNText} from "../text/text";
-import React from "react";
+import React, {useRef} from "react";
 import {defaultLabelPosition, defaultLabelStyle, TLabelPosition} from "../../styles/fields";
 import {flattenStyle} from "../component";
 import {absolute, fRow} from "../../styles/markups";
@@ -11,6 +11,7 @@ interface ILabel {
     label?: string
     children?: JSX.Element | JSX.Element[] | null | undefined
     style?: object | object[] | null | undefined
+    onPress?: () => void
 }
 
 export default function (props: ILabel) {

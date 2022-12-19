@@ -7,23 +7,20 @@ import {flattenStyle} from "../component";
 import {fRow} from "../../styles/markups";
 import {TextPrimary} from "../text/text";
 import Label from "./Label";
+import {IInputField} from "./InputField";
 
 interface IItem {
     label: string
     value: string
 }
 
-interface ISelect {
-    visible?: boolean
-    label?: string
+interface ISelect extends Omit<IInputField, 'value' | 'onFocus'| 'onBlur'| 'onKey'| 'onChange'>{
+    onBlur: undefined
+    onKey: undefined
+    onFocus: undefined
     value: string
     items: IItem[]
     onChange?: (value: string) => void
-    style?: object
-    editable?: boolean
-    labelLeft?: boolean
-    labelStyle?: object
-    labelPosition?: TLabelPosition
 }
 
 export default function (props: ISelect) {
@@ -35,7 +32,7 @@ export default function (props: ISelect) {
         label={props.label}
     >
     <Picker
-        enabled={props.editable}
+        enabled={props.disabled}
         // @ts-ignore
         style={field}
         selectedValue={String(props.value)}
