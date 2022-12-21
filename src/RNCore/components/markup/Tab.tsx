@@ -1,18 +1,21 @@
-import {black, border, flex1, jCenter, p2, primary} from "../../const";
 import {TouchableOpacity} from "react-native";
-import TextMain from "../text/TextMain";
+import {border} from "../../../styles/borders";
+import { primary, secondary } from "../../../styles/colors";
+import {p2} from "../../../styles/margins";
+import {flex1, jCenter} from "../../../styles/markups";
+import {flattenStyle} from "../component";
+import {TextPrimary} from "../text/text";
 
 
-interface TabInterface {
+interface ITab {
     active?: boolean,
     onPress?: () => void,
-    title?: string,
-    style?: object | null
+    label?: string,
     visible?: boolean
 }
 
-export function Tab({active, onPress, title, style, visible = true}: TabInterface) {
-    if (!visible) return null
+export function Tab(props: ITab) {
+    if (props.visible === false) return null
     const activeStyle = {
         borderColor: border.borderColor,
         borderTopLeftRadius: border.borderRadius,
@@ -33,11 +36,11 @@ export function Tab({active, onPress, title, style, visible = true}: TabInterfac
         ...flex1,
         height: 40,
     }
-    // @ts-ignore
+
     return <TouchableOpacity
-        style={[active ? activeStyle : inactiveStyle, style]}
-        onPress={onPress}
+        style={flattenStyle([props.active ? activeStyle : inactiveStyle])}
+        onPress={props.onPress}
     >
-        <TextMain style={[common, active ? primary : black]}>{title}</TextMain>
+        <TextPrimary style={[common, props.active ? primary : secondary]}>{props.label}</TextPrimary>
     </TouchableOpacity>
 }

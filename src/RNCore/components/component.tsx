@@ -1,5 +1,3 @@
-import {fixHeight, fixWidth} from "../styles/sizes";
-
 export interface IComponent {
     visible?: boolean | undefined
     children?: any

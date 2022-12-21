@@ -1,24 +1,18 @@
-import {Platform, Text, View, TouchableOpacity} from "react-native";
+import {Platform} from "react-native";
 import {useState} from "react";
-import {faCalendar, faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import DateTimePicker from '@react-native-community/datetimepicker'
-import {DatePickerModal, TimePickerModal} from 'react-native-paper-dates';
-import Date from "../text/Date"
-import {EDate} from "../sugar/date";
-import {field, TLabelPosition} from "../../styles/fields";
-import {flattenStyle} from "../component";
-import {bgDanger} from "../../styles/colors";
-import {fRow, jStart} from "../../styles/markups";
-import {TextPrimary} from "../text/text";
-import {textPrimary} from "../../styles/text";
+import {TimePickerModal} from 'react-native-paper-dates';
 import Label from "./Label";
 import {BtnPrimary} from "../buttons/Btn";
-import {stickLeft, stickRight} from "../../styles/margins";
 import Time from "../text/Time";
-import {IInputField} from "./InputField";
+import {IField} from "./InputField";
+import {stickLeft, stickRight} from "../../../styles/margins";
+import {field} from "../../../styles/fields";
+import {EDate} from "../../sugar/date";
 
 
-interface ITimeField extends Omit<IInputField, 'value' | 'onFocus'| 'onBlur'| 'onKey'| 'onChange'> {
+interface ITimeField extends Omit<IField, 'value' | 'onChange'> {
     value?: string
     onChange?: (date: string) => void
     useButtons?: boolean
@@ -26,7 +20,7 @@ interface ITimeField extends Omit<IInputField, 'value' | 'onFocus'| 'onBlur'| 'o
     showSeconds?: boolean
 }
 
-export default function DateField(props: ITimeField) {
+export default function TimeField(props: ITimeField) {
     const [open, setOpen] = useState(!!props.isOpen)
     if (props.visible === false) return null
 

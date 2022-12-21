@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {Row} from "../markup/markup";
-import {TextField} from "./TextField";
 import {flattenStyle} from "../component";
-import {field} from "../../styles/fields";
-import {flex1} from "../../styles/markups";
-import {stickLeft, stickRight} from "../../styles/margins";
 import {BtnPrimary} from "../buttons/Btn";
+import {field} from "../../../styles/fields";
+import {flex1} from "../../../styles/markups";
+import {stickLeft, stickRight} from "../../../styles/margins";
+import TextField from "../fields/TextField";
 
 
 interface IFind {

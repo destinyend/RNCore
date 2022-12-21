@@ -1,7 +1,7 @@
 import {TouchableOpacity, View} from "react-native";
-import {flex1, flex2, flex3, flex4, flex5, flex6, fRow, fWrap} from "../../styles/markups";
 import {flattenStyle, IComponent} from "../component";
 import {TextPrimary} from "../text/text";
+import {flex1, flex2, flex3, flex4, flex5, flex6, fRow, fWrap} from "../../../styles/markups";
 
 export function RNView(props: IComponent) {
     if (props.visible === false) return null

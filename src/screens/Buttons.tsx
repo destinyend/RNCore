@@ -1,12 +1,13 @@
-import {Col, Col1, Row} from "../RNCore/markup/markup";
-import {BtnDanger, BtnPrimary, BtnSecondary, BtnSuccess, BtnWarning} from "../RNCore/buttons/Btn";
-import {BtnTimer} from "../RNCore/buttons/BtnTimer";
-import {mr1, mt2, mt5, mv2} from "../styles/margins";
-import {H1, H2, H3} from "../RNCore/text/headers";
-import {TextPrimary} from "../RNCore/text/text";
-import BtnToggle from "../RNCore/buttons/BtnToggle";
+import {mr1, mt5, mv2} from "../styles/margins";
 import {useState} from "react";
-import BtnRemove from "../RNCore/buttons/BtnRemove";
+import {Col1, Row} from "../RNCore/components/markup/markup";
+import {H1, H3} from "../RNCore/components/text/headers";
+import {BtnDanger, BtnPrimary, BtnSecondary, BtnSuccess, BtnWarning} from "../RNCore/components/buttons/Btn";
+import {TextPrimary} from "../RNCore/components/text/text";
+import {BtnTimer} from "../RNCore/components/buttons/BtnTimer";
+import BtnToggle from "../RNCore/components/buttons/BtnToggle";
+import BtnRemove from "../RNCore/components/buttons/BtnRemove";
+
 
 export default function () {
     const [active, setActive] = useState(false)

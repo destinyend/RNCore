@@ -3,10 +3,10 @@ import {LinearGradient} from "expo-linear-gradient";
 import FA from "../static/FA";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 import {flattenStyle} from "../component";
-import {flex1} from "../../styles/markups";
-import {btnDanger, btnSecondary, btnSuccess, btnWarning, btnWrapper} from "../../styles/buttons";
-import {btnPrimary} from "../../styles/buttons";
-import {mainWidth} from "../../styles/sizes";
+import {mainWidth} from "../../../styles/sizes";
+import {btnDanger, btnPrimary, btnSecondary, btnSuccess, btnWarning, btnWrapper} from "../../../styles/buttons";
+import {flex1} from "../../../styles/markups";
+
 
 export interface IBtnBase {
     title?: string
@@ -18,21 +18,11 @@ export interface IBtnBase {
     wrpStyle?: object
     fontStyle?: object
     borderStyle?: object
-    icon?: IconDefinition
+    icon?: IconDefinition | undefined | null
     width?: 'auto' | 'field' | 'flex'
     style?: object
 }
 
-export interface IBtn {
-    title?: string
-    onPress?: () => void
-    onLongPress?: () => void
-    disabled?: boolean,
-    visible?: boolean,
-    style?: object,
-    icon?: IconDefinition
-    width?: 'auto' | 'field' | 'flex'
-}
 
 export default function Btn(props: IBtnBase) {
     if (props.visible === false) return null
@@ -46,7 +36,7 @@ export default function Btn(props: IBtnBase) {
             wrpStyle = flattenStyle([btnWrapper, props.borderStyle, flex1])
             break
         default:
-            wrpStyle = flattenStyle([{alignSelf: 'flex-start' }, btnWrapper, props.wrpStyle])
+            wrpStyle = flattenStyle([{alignSelf: 'flex-start'}, btnWrapper, props.wrpStyle])
             break
     }
     let style = {...props.style}
@@ -72,6 +62,17 @@ export default function Btn(props: IBtnBase) {
         </LinearGradient>
     </TouchableOpacity>
 
+}
+
+export interface IBtn {
+    title?: string
+    onPress?: () => void
+    onLongPress?: () => void
+    disabled?: boolean,
+    visible?: boolean,
+    style?: object,
+    icon?: IconDefinition | null | undefined
+    width?: 'auto' | 'field' | 'flex'
 }
 
 export function BtnPrimary(props: IBtn) {

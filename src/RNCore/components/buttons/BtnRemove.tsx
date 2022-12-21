@@ -1,7 +1,7 @@
-import Btn, {BtnDanger, IBtn} from "./Btn";
-import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {BtnDanger, IBtn} from "./Btn";
 import {useContext} from "react";
-import {AppContext} from "../appContexts/AppContext";
+import {AppContext} from "../../appContexts/AppContext";
+
 
 
 export interface IBtnRemove extends IBtn {

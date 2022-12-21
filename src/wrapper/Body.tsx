@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {ScrollView} from "react-native";
 import {screen_list} from "../screens/_map";
 import {bodyStyle} from "../styles/wrapper";
-import {Col1} from "../RNCore/markup/markup";
+
 
 export default function () {
     const {navigation} = useContext(AppContext)

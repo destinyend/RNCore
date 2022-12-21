@@ -1,6 +1,6 @@
 import {TextPrimary} from "./text";
-import {EDate} from "../sugar/date";
 import {flattenStyle} from "../component";
+import {EDate} from "../../sugar/date";
 
 interface IDate {
     children?: string | null | undefined | number | EDate | Date

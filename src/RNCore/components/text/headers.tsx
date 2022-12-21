@@ -1,6 +1,6 @@
 import {IText, TextPrimary} from "./text";
-import {h1Style, h2Style, h3Style, h4Style, h5Style, h6Style} from "../../styles/text";
 import {flattenStyle} from "../component";
+import {h1Style, h2Style, h3Style, h4Style, h5Style, h6Style} from "../../../styles/text";
 
 export function H1(props: IText) {
     const style = [props.style, h1Style]

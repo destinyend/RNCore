@@ -1,10 +1,11 @@
-import {Col, Col1, Col3, Row, Row1, Row2, Row3} from "../RNCore/markup/markup";
-import {NumberFiled, TextField} from "../RNCore/fields/TextField";
 import {useState} from "react";
-import Select from "../RNCore/fields/Select";
 import {mt1, mt2} from "../styles/margins";
-import DateField from "../RNCore/fields/DateField";
 import {textPrimary} from "../styles/text";
+import {Col1} from "../RNCore/components/markup/markup";
+import TextField from "../RNCore/components/fields/TextField";
+import NumberField from "../RNCore/components/fields/NumberField";
+import Select from "../RNCore/components/fields/Select";
+import DateField from "../RNCore/components/fields/DateField";
 
 
 export default function (): JSX.Element {
@@ -27,7 +28,7 @@ export default function (): JSX.Element {
             labelStyle={textPrimary}
         />
 
-        <NumberFiled
+        <NumberField
             style={mt2}
             label={'NumberFiled'}
             value={num}

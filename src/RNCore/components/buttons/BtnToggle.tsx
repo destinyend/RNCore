@@ -1,8 +1,4 @@
-import Btn, {BtnPrimary, BtnSecondary, IBtn} from "./Btn";
-import {faTrash} from "@fortawesome/free-solid-svg-icons";
-import {useContext} from "react";
-import {AppContext} from "../appContexts/AppContext";
-
+import {BtnPrimary, BtnSecondary, IBtn} from "./Btn";
 
 export interface IBtnRemove extends IBtn {
     active: boolean

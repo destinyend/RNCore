@@ -1,23 +1,18 @@
-import {Platform, Text, View, TouchableOpacity} from "react-native";
+import {Platform} from "react-native";
 import {useState} from "react";
-import {faCalendar, faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import DateTimePicker from '@react-native-community/datetimepicker'
 import {DatePickerModal} from 'react-native-paper-dates';
 import Date from "../text/Date"
-import {EDate} from "../sugar/date";
-import {field, TLabelPosition} from "../../styles/fields";
-import {flattenStyle} from "../component";
-import {bgDanger} from "../../styles/colors";
-import {fRow, jStart} from "../../styles/markups";
-import {TextPrimary} from "../text/text";
-import {textPrimary} from "../../styles/text";
 import Label from "./Label";
 import {BtnPrimary} from "../buttons/Btn";
-import {stickLeft, stickRight} from "../../styles/margins";
-import {IInputField} from "./InputField";
+import {IField} from "./InputField";
+import {EDate} from "../../sugar/date";
+import {stickLeft, stickRight} from "../../../styles/margins";
+import {field} from "../../../styles/fields";
 
 
-interface IDateField extends Omit<IInputField, 'value' | 'onFocus'| 'onBlur'| 'onKey'| 'onChange'>{
+interface IDateField extends Omit<IField, 'value' | 'onChange'>{
     value?: string
     onChange?: (date: string) => void
     useButtons?: boolean

@@ -1,12 +1,20 @@
 import {useContext} from "react";
-import {AppContext} from "../appContexts/AppContext";
 import {Modal, Pressable} from "react-native";
 import {Row} from "../markup/markup";
-import {alertBody, alertBox, alertCloseBtn, alertCloseBtnWrapper, alertTitle, alertWrapper} from "../../styles/alert";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import Btn, {BtnPrimary} from "../buttons/Btn";
-import {ml1, mr1} from "../../styles/margins";
-import {danger, primary, secondary, success, warning} from "../../styles/colors";
+import {AppContext} from "../../appContexts/AppContext";
+import {
+    alertBody,
+    alertBox,
+    alertCloseBtn,
+    alertCloseBtnWrapper,
+    alertTitle,
+    alertWrapper
+} from "../../../styles/alert";
+import {ml1} from "../../../styles/margins";
+import {danger, primary, secondary, success, warning} from "../../../styles/colors";
+
 
 export default function () {
     const {alert} = useContext(AppContext)

@@ -1,34 +1,44 @@
-import {field, TLabelPosition} from "../../styles/fields";
 import Label from "./Label";
 import {TextInput} from "react-native";
 import {flattenStyle} from "../component";
-import {placeholderColor} from "../../styles/text";
 import React from "react";
+import {field, TLabelPosition} from "../../../styles/fields";
+import {placeholderColor} from "../../../styles/text";
 
 export interface IOnKey {
     [index: string]: (value: any) => void
 }
-export interface IInputField {
-    onChange?: (value: any) => void
-    onBlur?: (value: any) => void
+
+export interface IField {
     value?: any
     visible?: boolean
     style?: object
     disabled?: boolean
-    onKey?: IOnKey
-    keyboardType?: 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad' | 'url'
     placeholder?: string
-    autoCapitalize?: boolean
-    cursorColor?: string
-    maxLength?: number
-    numberOfLines?: number
     labelPosition?: TLabelPosition
     label?: string
-    onFocus?: (value: any) => void
     labelStyle?: object
+    onChange?: (value: any) => void
 }
 
-function InputField(props: IInputField) {
+
+export interface ICursorField extends IField {
+    cursorColor?: string
+    onBlur?: (value: any) => void
+    onKey?: IOnKey
+    onFocus?: (value: any) => void
+}
+
+export interface IInputField extends ICursorField {
+    keyboardType?: 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad' | 'url'
+    autoCapitalize?: boolean
+    maxLength?: number
+    numberOfLines?: number
+}
+
+
+
+export default function InputField(props: IInputField) {
     if (props.visible === false) return null
     return <Label
         labelStyle={props.labelStyle}

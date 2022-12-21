@@ -1,9 +1,9 @@
 import {RNText} from "../text/text";
-import React, {useRef} from "react";
-import {defaultLabelPosition, defaultLabelStyle, TLabelPosition} from "../../styles/fields";
+import React from "react";
 import {flattenStyle} from "../component";
-import {absolute, fRow} from "../../styles/markups";
 import {View} from "react-native";
+import {defaultLabelPosition, defaultLabelStyle, TLabelPosition} from "../../../styles/fields";
+import {absolute, fRow} from "../../../styles/markups";
 
 interface ILabel {
     labelPosition?: TLabelPosition

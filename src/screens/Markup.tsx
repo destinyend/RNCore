@@ -1,8 +1,8 @@
-import {Col, Col1, Col3, Row, Row1, Row2, Row3} from "../RNCore/markup/markup";
-import {bgDanger, bgSecondaryLight, bgSuccess, bgWarning, danger} from "../styles/colors";
+import {bgDanger, bgSecondaryLight, bgSuccess, bgWarning} from "../styles/colors";
 import {fixHeight, fixWidth} from "../styles/sizes";
 import {m1} from "../styles/margins";
 import {aCenter, jCenter} from "../styles/markups";
+import {Col, Col1, Col3, Row, Row1, Row2, Row3} from "../RNCore/components/markup/markup";
 
 
 export default function (): JSX.Element {
