@@ -1,5 +1,5 @@
 import {danger, secondary, secondaryLight, success, warning} from "./colors";
-import {fixHeight, mainHeight} from "./sizes";
+import {fixHeight, fixWidth, mainHeight} from "./sizes";
 import {mainPadding} from "./margins";
 import {aCenter, jCenter} from "./markups";
 
@@ -58,27 +58,27 @@ export const h6Style = {
 
 export const h1Style = {
     ...h6Style,
-    ...fixHeight(textMain.height*1.5),
+    fontSize: '150%',
 }
 
 export const h2Style = {
     ...h6Style,
-    ...fixHeight(textMain.height*1.4),
+    fontSize: '140%',
 }
 
 export const h3Style = {
     ...h6Style,
-    ...fixHeight(textMain.height*1.3),
+    fontSize: '130%',
 }
 
 export const h4Style = {
     ...h6Style,
-    ...fixHeight(textMain.height*1.2),
+    fontSize: '120%',
 }
 
 export const h5Style = {
     ...h6Style,
-    ...fixHeight(textMain.height*1.1),
+    fontSize: '110%',
 }
 
 export const placeholderColor = secondary.color

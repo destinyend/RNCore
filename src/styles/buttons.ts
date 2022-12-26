@@ -10,11 +10,9 @@ import {
     bgWarningLight
 } from "./colors";
 import {textPrimary} from "./text";
-import {mainHeight, mainWidth} from "./sizes";
+import {mainHeight} from "./sizes";
 import {mainPadding} from "./margins";
 import {aCenter, jCenter} from "./markups";
-
-export const btnBorder = {}
 
 export const btnWrapper = {
     ...aCenter,

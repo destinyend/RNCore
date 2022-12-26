@@ -2,7 +2,7 @@ import {bgDanger, bgSecondaryLight, bgSuccess, bgWarning} from "../styles/colors
 import {fixHeight, fixWidth} from "../styles/sizes";
 import {m1} from "../styles/margins";
 import {aCenter, jCenter} from "../styles/markups";
-import {Col, Col1, Col3, Row, Row1, Row2, Row3} from "../RNCore/components/markup/markup";
+import {Col, Col1, Col2, Col3, Row, Row1, Row2, Row3} from "../RNCore/components/markup/markup";
 
 
 export default function (): JSX.Element {
@@ -15,7 +15,7 @@ export default function (): JSX.Element {
         </Col>
         <Row style={[fixHeight(300), fixWidth(400), m1]}>
             <Col1 style={[bgDanger, jCenter, aCenter]}>Col1</Col1>
-            <Col1 style={[bgWarning, jCenter, aCenter]}>Col2</Col1>
+            <Col2 style={[bgWarning, jCenter, aCenter]}>Col2</Col2>
             <Col3 style={[bgSuccess, jCenter, aCenter]}>Col3</Col3>
             <Col style={[bgSecondaryLight, jCenter, aCenter]}>Col</Col>
         </Row>

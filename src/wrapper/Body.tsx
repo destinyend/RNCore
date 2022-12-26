@@ -1,7 +1,7 @@
 import {AppContext} from "../RNCore/appContexts/AppContext";
 import {useContext} from "react";
 import {ScrollView} from "react-native";
-import {screen_list} from "../screens/_map";
+import {screen_list} from "../screens/_navigation";
 import {bodyStyle} from "../styles/wrapper";
 
 

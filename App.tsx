@@ -1,10 +1,10 @@
 import {useState} from "react";
 import {AppContext} from "./src/RNCore/appContexts/AppContext";
 import {IAlertShow, initialAlertState} from "./src/RNCore/appContexts/alert";
-import {initialNavigationState} from "./src/RNCore/appContexts/navigation";
 import Header from "./src/wrapper/Header";
 import Body from "./src/wrapper/Body";
 import {View} from "react-native";
+import {initialNavigationState} from "./src/screens/_navigation";
 
 export default function App() {
     const [alertState, setAlertState] = useState(initialAlertState)

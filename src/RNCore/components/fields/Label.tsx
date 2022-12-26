@@ -3,7 +3,7 @@ import React from "react";
 import {flattenStyle} from "../component";
 import {View} from "react-native";
 import {defaultLabelPosition, defaultLabelStyle, TLabelPosition} from "../../../styles/fields";
-import {absolute, fRow} from "../../../styles/markups";
+import {absolute, fRow, jCenter} from "../../../styles/markups";
 
 interface ILabel {
     labelPosition?: TLabelPosition

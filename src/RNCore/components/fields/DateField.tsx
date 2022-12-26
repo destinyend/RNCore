@@ -92,6 +92,7 @@ function Picker(props: IPicker) {
             label={''}
             saveLabel=""
             onConfirm={() => props.setOpen(false)}
+
         />
     }
     return <DateTimePicker

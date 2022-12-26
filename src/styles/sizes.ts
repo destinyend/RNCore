@@ -4,7 +4,7 @@ import {h1Style, textComment, textPrimary} from "./text";
 
 export const mainHeight = fixHeight(24)
 
-export const mainWidth = {minWidth: 40, width: 200, maxWidth: 200}
+export const mainWidth = {minWidth: mainHeight.height, width: 200, maxWidth: 200}
 export function fixHeight(height: number) {
     return {minHeight: height, height, maxHeight: height}
 }

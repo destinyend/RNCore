@@ -1,6 +1,6 @@
 import {createContext} from "react";
 import {IAlert, IAlertState, initialAlert, initialAlertState} from "./alert";
-import {INavigation, INavigationState, initialNavigation, initialNavigationState} from "./navigation";
+import {INavigation, INavigationState, initialNavigation, initialNavigationState} from "../../screens/_navigation";
 
 
 export interface IApp {
