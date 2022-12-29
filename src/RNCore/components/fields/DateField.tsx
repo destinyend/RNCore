@@ -6,10 +6,11 @@ import {DatePickerModal} from 'react-native-paper-dates';
 import Date from "../text/Date"
 import Label from "./Label";
 import {BtnPrimary} from "../buttons/Btn";
-import {IField} from "./InputField";
+import {getFieldStyle, IField} from "./InputField";
 import {EDate} from "../../sugar/date";
 import {stickLeft, stickRight} from "../../../styles/margins";
 import {field} from "../../../styles/fields";
+import {flattenStyle} from "../component";
 
 
 interface IDateField extends Omit<IField, 'value' | 'onChange'>{
@@ -37,6 +38,7 @@ export default function DateField(props: IDateField) {
         // @ts-ignore
         props.onChange(date.isoDate())
     }
+    const filedStyle = getFieldStyle(props.style)
     return <Label
         labelStyle={props.labelStyle}
         labelPosition={props.labelPosition}
@@ -51,7 +53,7 @@ export default function DateField(props: IDateField) {
         />
         <Date
             onPress={() => setOpen(true)}
-            style={field}
+            style={flattenStyle([filedStyle, field])}
             showYear={props.showYear}
         >
             {props.value}

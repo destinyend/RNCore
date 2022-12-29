@@ -6,10 +6,11 @@ import {TimePickerModal} from 'react-native-paper-dates';
 import Label from "./Label";
 import {BtnPrimary} from "../buttons/Btn";
 import Time from "../text/Time";
-import {IField} from "./InputField";
+import {getFieldStyle, IField} from "./InputField";
 import {stickLeft, stickRight} from "../../../styles/margins";
 import {field} from "../../../styles/fields";
 import {EDate} from "../../sugar/date";
+import {flattenStyle} from "../component";
 
 
 interface ITimeField extends Omit<IField, 'value' | 'onChange'> {
@@ -36,6 +37,7 @@ export default function TimeField(props: ITimeField) {
         // @ts-ignore
         props.onChange(date.isoTime(props.showSeconds === true))
     }
+    const filedStyle = getFieldStyle(props.style)
     return <Label
         labelStyle={props.labelStyle}
         labelPosition={props.labelPosition}
@@ -50,7 +52,7 @@ export default function TimeField(props: ITimeField) {
         />
         <Time
             onPress={() => setOpen(true)}
-            style={field}
+            style={flattenStyle([filedStyle, field])}
             showSeconds={props.showSeconds}
         >
             {props.value}

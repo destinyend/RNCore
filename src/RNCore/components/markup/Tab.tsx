@@ -5,6 +5,7 @@ import {p2} from "../../../styles/margins";
 import {flex1, jCenter} from "../../../styles/markups";
 import {flattenStyle} from "../component";
 import {TextPrimary} from "../text/text";
+import {bold} from "../../../styles/text";
 
 
 interface ITab {
@@ -35,12 +36,13 @@ export function Tab(props: ITab) {
         ...jCenter,
         ...flex1,
         height: 40,
+        primary
     }
 
     return <TouchableOpacity
         style={flattenStyle([props.active ? activeStyle : inactiveStyle])}
         onPress={props.onPress}
     >
-        <TextPrimary style={[common, props.active ? primary : secondary]}>{props.label}</TextPrimary>
+        <TextPrimary style={[common, props.active ? bold : null]}>{props.label}</TextPrimary>
     </TouchableOpacity>
 }

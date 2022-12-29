@@ -1,6 +1,7 @@
 import {Row} from "./markup";
 import {Tab} from "./Tab";
 import {flattenStyle} from "../component";
+import {TStyle} from "../../constants";
 
 interface IItem {
     label: string
@@ -12,7 +13,7 @@ interface ITabBar {
     items: IItem[]
     onPress: (value: string) => void
     value: string
-    style?: object | null | undefined | object[]
+    style?: TStyle
 }
 
 export default function (props: ITabBar) {
@@ -23,6 +24,7 @@ export default function (props: ITabBar) {
                 key={key}
                 label={tab.label}
                 active={tab.value === props.value}
+                onPress={() => props.onPress(tab.value)}
             />
         })}
     </Row>

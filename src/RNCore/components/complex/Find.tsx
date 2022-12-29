@@ -8,6 +8,7 @@ import {flex1} from "../../../styles/markups";
 import {stickLeft, stickRight} from "../../../styles/margins";
 import TextField from "../fields/TextField";
 import {noBorder} from "../../../styles/borders";
+import {fixWidth, mainWidth} from "../../../styles/sizes";
 
 
 interface IFind {
@@ -29,11 +30,11 @@ export default function (props: IFind) {
         setText('')
     }
 
-    return <Row style={flattenStyle([, props.style])}>
+    return <Row style={flattenStyle(props.style)}>
         <TextField
             disabled={props.disabled}
-            placeholder={props.placeholder}
-            style={[flex1, {backgroundColor: 'transparent'}, noBorder]}
+            placeholder={props.placeholder || 'поиск'}
+            style={stickRight}
             onChange={setText}
             value={text}
             onKey={{

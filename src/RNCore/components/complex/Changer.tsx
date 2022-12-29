@@ -15,63 +15,40 @@ import {TLabelPosition} from "../../../styles/fields";
 import Checkbox from "../fields/Checkbox";
 import Toggle from "../fields/Toggle";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {getInitialFieldState, IField} from "./Creator";
 
 
-export interface IField {
-    label?: string
-    placeholder?: string
-    field: string
-    required?: boolean
-    type: 'number' | 'text' | 'date' | 'select' | 'toggle' | 'checkbox'
-    value?: any
-    items?: IItem[]
-}
-
-export interface ICreator {
+export interface IChanger {
     visible?: boolean
-    create?: (args: any) => void
+    change?: (args: any) => void
     fields: IField[]
     vertical?: boolean
     style?: object
-    title?: string
-    icon?: IconDefinition | null
     error?: string
     labelPosition?: TLabelPosition
+    id?: string
 }
 
-export function getInitialFieldState(fields: IField[]) {
-    let initialState = {}
-    for (const field of fields) {
-        // @ts-ignore
-        initialState[field.field] = field.value
-    }
-    return initialState
-}
 
-export default function (props: ICreator): JSX.Element | null {
+export default function (props: IChanger): JSX.Element | null {
     const initialState = getInitialFieldState(props.fields)
     const [state, setState] = useState(initialState)
     const [_error, setError] = useState(props.error)
     if (props.visible === false) return null
 
-    function onPress() {
-        if (!props.create) return
-        const required = []
-        for (const filed of props.fields) {
-            // @ts-ignore
-            if (!!filed.required && !state[filed.field]) {
-                if (filed.label) required.push(filed.label)
-                else if (filed.placeholder) required.push(filed.placeholder)
-                else required.push(filed.field)
+    function onBlur(key: string) {
+        if (!props.change) return
+        for (let field of props.fields) {
+            if (field.field === key) {
+                // @ts-ignore
+                if (field.required && !state[key]) setError(`"${field.label}" не может быть пустым`)
+                else {
+                    setError('')
+                    // @ts-ignore
+                    props.change({id: props.id, [key]: state[key]})
+                }
+                return;
             }
-        }
-        if (required.length) {
-            setError("Заполните: " + required.join(', '))
-        } else {
-            // @ts-ignore
-            props.create(state)
-            setState(initialState)
-            setError('')
         }
     }
 
@@ -82,12 +59,15 @@ export default function (props: ICreator): JSX.Element | null {
     const components = props.fields.map((field, key) => {
         let stickStyle: object
         if (props.vertical === true) {
-            if (key) stickStyle = stick
-            else stickStyle = stickBottom
+            if (!key) stickStyle = stickBottom
+            else if (key === props.fields.length - 1) stickStyle = stickTop
+            else stickStyle = stick
         } else {
-            if (key) stickStyle = stick
-            else stickStyle = stickRight
+            if (!key) stickStyle = stickRight
+            else if (key === props.fields.length - 1) stickStyle = stickLeft
+            else stickStyle = stick
         }
+        
         const fieldProps = {
             key,
             label: field.label,
@@ -95,7 +75,8 @@ export default function (props: ICreator): JSX.Element | null {
             value: state[field.field],
             placeholder: field.placeholder,
             style: stickStyle,
-            labelPosition: props.labelPosition
+            labelPosition: props.labelPosition,
+            onBlur: () => onBlur(field.field)
         }
 
         switch (field.type) {
@@ -127,19 +108,11 @@ export default function (props: ICreator): JSX.Element | null {
         return <Col style={flattenStyle([jEnd, props.style])}>
             {components}
             <TextWarning visible={!!_error}>{_error}</TextWarning>
-            <BtnPrimary
-                icon={props.icon || faPlus}
-                title={props.title}
-                onPress={onPress}
-                width={'field'}
-                style={stickTop}
-            />
         </Col>
     }
     return <Col>
         <Row style={flattenStyle(props.style)}>
             {components}
-            <BtnPrimary icon={props.icon || faPlus} title={props.title} onPress={onPress} style={stickLeft}/>
         </Row>
         <TextWarning visible={!!_error} style={danger}>{_error}</TextWarning>
     </Col>

@@ -5,10 +5,10 @@ import {h1Style, textComment, textPrimary} from "./text";
 export const mainHeight = fixHeight(24)
 
 export const mainWidth = {minWidth: mainHeight.height, width: 200, maxWidth: 200}
-export function fixHeight(height: number) {
+export function fixHeight(height: number | string) {
     return {minHeight: height, height, maxHeight: height}
 }
 
-export function fixWidth(width: number) {
+export function fixWidth(width: number | string) {
     return {minWidth: width, width, maxWidth: width}
 }

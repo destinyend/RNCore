@@ -96,7 +96,7 @@ export const pv3 = {paddingTop: p3.padding, paddingBottom: p3.padding}
 export const pv4 = {paddingTop: p4.padding, paddingBottom: p4.padding}
 export const pv5 = {paddingTop: p5.padding, paddingBottom: p5.padding}
 
-export const mainPadding = {...ph2, ...pv1}
+export const mainPadding = {...p1}
 
 export const stickRight = {
     marginRight: 0,

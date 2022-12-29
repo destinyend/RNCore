@@ -36,10 +36,22 @@ export interface IInputField extends ICursorField {
     numberOfLines?: number
 }
 
+export function getFieldStyle(style: object| undefined) {
+    let filedStyle = {}
+     style = flattenStyle(style)
+    for (let key in style) {
+        if (key.startsWith('border') || key.startsWith('flex')) { // @ts-ignore
+            filedStyle[key] = style[key]
+        }
+    }
+    return filedStyle
+}
 
 
 export default function InputField(props: IInputField) {
     if (props.visible === false) return null
+    const filedStyle = getFieldStyle(props.style)
+
     return <Label
         labelStyle={props.labelStyle}
         labelPosition={props.labelPosition}
@@ -51,7 +63,7 @@ export default function InputField(props: IInputField) {
             onKeyPress={({nativeEvent: {key: keyValue}}) => {
                 if (props.onKey && keyValue in props.onKey) props.onKey[keyValue](props.value)
             }}
-            style={flattenStyle(field)}
+            style={flattenStyle([field, filedStyle])}
             value={props.value}
             onChangeText={props.onChange}
             // @ts-ignore

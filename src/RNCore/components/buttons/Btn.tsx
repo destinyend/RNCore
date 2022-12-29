@@ -3,7 +3,7 @@ import {LinearGradient} from "expo-linear-gradient";
 import FA from "../static/FA";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 import {flattenStyle} from "../component";
-import {mainWidth} from "../../../styles/sizes";
+import {fixHeight, mainWidth} from "../../../styles/sizes";
 import {btnDanger, btnPrimary, btnSecondary, btnSuccess, btnWarning, btnWrapper} from "../../../styles/buttons";
 import {flex1} from "../../../styles/markups";
 
@@ -15,9 +15,7 @@ export interface IBtnBase {
     disabled?: boolean,
     visible?: boolean,
     bgColors?: string[]
-    wrpStyle?: object
     fontStyle?: object
-    borderStyle?: object
     icon?: IconDefinition | undefined | null
     width?: 'auto' | 'field' | 'flex'
     style?: object
@@ -30,34 +28,31 @@ export default function Btn(props: IBtnBase) {
     let wrpStyle
     switch (props.width) {
         case 'field':
-            wrpStyle = flattenStyle([mainWidth, btnWrapper, props.wrpStyle])
+            wrpStyle = flattenStyle([mainWidth, btnWrapper, props.style])
             break
         case 'flex':
-            wrpStyle = flattenStyle([btnWrapper, props.borderStyle, flex1])
+            wrpStyle = flattenStyle([btnWrapper, flex1, props.style])
             break
         default:
-            wrpStyle = flattenStyle([{alignSelf: 'flex-start'}, btnWrapper, props.wrpStyle])
+            wrpStyle = flattenStyle([{alignSelf: 'flex-start'}, btnWrapper, props.style])
             break
     }
-    let style = {...props.style}
-    if (props.width) style = {...style, ...flex1}
+
     return <TouchableOpacity
-        style={style}
+        style={props.width ? flattenStyle(flex1): null}
         onPress={props.onPress}
         disabled={props.disabled}
         onLongPress={props.onLongPress}
     >
         <LinearGradient
             colors={props.bgColors ? props.bgColors : []}
-            // @ts-ignore
             style={wrpStyle}
         >
             {
                 props.title ?
                     <Text style={props.fontStyle}>{props.title}</Text>
                     :
-                    // @ts-ignore
-                    <FA icon={props.icon} style={props.fontStyle}/>
+                    <FA icon={props.icon} style={[props.fontStyle, fixHeight('100%')]}/>
             }
         </LinearGradient>
     </TouchableOpacity>
@@ -78,7 +73,6 @@ export interface IBtn {
 export function BtnPrimary(props: IBtn) {
     return <Btn
         {...props}
-        style={props.style}
         bgColors={btnPrimary.background}
         fontStyle={btnPrimary.font}
     />

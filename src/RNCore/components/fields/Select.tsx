@@ -1,8 +1,9 @@
 import React from "react";
 import {Picker} from '@react-native-picker/picker';
 import Label from "./Label";
-import {IField} from "./InputField";
+import {getFieldStyle, IField} from "./InputField";
 import {field} from "../../../styles/fields";
+import {flattenStyle} from "../component";
 
 export interface IItem {
     label: string
@@ -17,6 +18,7 @@ interface ISelect extends Omit<IField, 'value' | 'onChange'> {
 
 export default function (props: ISelect) {
     if (props.visible === false) return null
+    const filedStyle = getFieldStyle(props.style)
     return <Label
         labelStyle={props.labelStyle}
         labelPosition={props.labelPosition}
@@ -25,8 +27,7 @@ export default function (props: ISelect) {
     >
         <Picker
             enabled={props.disabled}
-            // @ts-ignore
-            style={field}
+            style={flattenStyle([filedStyle, field])}
             selectedValue={String(props.value)}
             onValueChange={props.onChange}
         >
