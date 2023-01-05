@@ -8,12 +8,14 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons";
 
 
 export interface IBtnRemove extends IBtn {
+    visible?: boolean
     confirm?: boolean
     mode?: 'btn' | 'icon' | 'btnIcon'
 }
 
 export default function (props: IBtnRemove) {
     const {alert} = useContext(AppContext)
+    if (props.visible === false) return null
 
     function remove() {
         if (!props.onPress) return

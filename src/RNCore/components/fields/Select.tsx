@@ -5,14 +5,14 @@ import {getFieldStyle, IField} from "./InputField";
 import {field} from "../../../styles/fields";
 import {flattenStyle} from "../component";
 
-export interface IItem {
+export interface IVariant {
     label: string
     value: string
 }
 
 interface ISelect extends Omit<IField, 'value' | 'onChange'> {
     value: string
-    items: IItem[]
+    variants: IVariant[]
     onChange?: (value: string) => void
 }
 
@@ -29,9 +29,9 @@ export default function (props: ISelect) {
             enabled={props.disabled}
             style={flattenStyle([filedStyle, field])}
             selectedValue={String(props.value)}
-            onValueChange={props.onChange}
+            onValueChange={props?.onChange}
         >
-            {props.items.map((item, key) => <Picker.Item key={key} {...item}/>)}
+            {props.variants?.map((variant, key) => <Picker.Item key={key} {...variant}/>)}
         </Picker>
     </Label>
 }

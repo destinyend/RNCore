@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
-import Select, {IItem} from "../fields/Select";
+import Select, {IVariant} from "../fields/Select";
 import {stick, stickBottom, stickLeft, stickRight, stickTop} from "../../../styles/margins";
 import TextField from "../fields/TextField";
 import DateField from "../fields/DateField";
@@ -67,7 +67,7 @@ export default function (props: IChanger): JSX.Element | null {
             else if (key === props.fields.length - 1) stickStyle = stickLeft
             else stickStyle = stick
         }
-        
+
         const fieldProps = {
             key,
             label: field.label,

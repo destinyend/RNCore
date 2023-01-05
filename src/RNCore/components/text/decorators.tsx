@@ -17,7 +17,7 @@ export function Percent({visible = true, children, style = {}, decimal = 2}: INu
     return <TextPrimary style={style}>{str}</TextPrimary>
 }
 
-export function Number({visible = true, children, style = {}, decimal = 2}: INumber) {
+export function Numeric({visible = true, children, style = {}, decimal = 2}: INumber) {
     if (!visible) return null
     return <TextPrimary style={style}>{numberWithSpaces(children, decimal)}</TextPrimary>
 }

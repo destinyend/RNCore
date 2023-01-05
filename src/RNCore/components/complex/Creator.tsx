@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
-import Select, {IItem} from "../fields/Select";
+import Select, {IVariant} from "../fields/Select";
 import {stick, stickBottom, stickLeft, stickRight, stickTop} from "../../../styles/margins";
 import TextField from "../fields/TextField";
 import DateField from "../fields/DateField";
@@ -24,7 +24,7 @@ export interface IField {
     required?: boolean
     type: 'number' | 'text' | 'date' | 'select' | 'toggle' | 'checkbox'
     value?: any
-    items?: IItem[]
+    items?: IVariant[]
 }
 
 export interface ICreator {

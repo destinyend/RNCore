@@ -1,12 +1,15 @@
+import {TStyle} from "../constants";
+
 export interface IComponent {
     visible?: boolean | undefined
     children?: any
-    style?: object | object[] | null | undefined
+    style?: TStyle
+    fontStyle?: TStyle
     onPress?: () => void
     disabled?: boolean
 }
 
-export function flattenStyle(args: object | object[] | null | undefined): object {
+export function flattenStyle(args: TStyle): object {
     if (Array.isArray(args)) {
         let styles: object = {}
         for (const el of args) {

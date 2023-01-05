@@ -1,6 +1,6 @@
 import {Col1, Row, Row1} from "../RNCore/components/markup/markup";
 import Label from "../RNCore/components/fields/Label";
-import {Number, Percent, Rub} from "../RNCore/components/text/decorators";
+import {Numeric, Percent, Rub} from "../RNCore/components/text/decorators";
 import {m1, mt2, p1} from "../styles/margins";
 import {H1, H2, H6, H4, H5, H3} from "../RNCore/components/text/headers";
 import React from "react";
@@ -28,7 +28,7 @@ export default function () {
                 <Rub>1000</Rub>
             </Label>
             <Label style={m1} label={'Number'}>
-                <Number>1000</Number>
+                <Numeric>1000</Numeric>
             </Label>
             <Label style={m1} label={'Percent'}>
                 <Percent>10</Percent>

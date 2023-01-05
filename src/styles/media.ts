@@ -1,4 +1,4 @@
-import {aCenter, flex1, jCenter} from "./markups";
+import {aCenter, flex1, jCenter, sCenter} from "./markups";
 import {fixHeight, fixWidth} from "./sizes";
 import {field} from "./fields";
 import {bgSecondaryLight} from "./colors";
@@ -19,7 +19,8 @@ export const playerStyle = {
     ...fixWidth(320),
     ...fixHeight(180),
     jCenter,
-    aCenter
+    aCenter,
+    sCenter
 }
 
 export const imageStyle = {...playerStyle}

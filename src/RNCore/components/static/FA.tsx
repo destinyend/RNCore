@@ -1,10 +1,8 @@
-import {Platform, TouchableOpacity} from "react-native";
+import {TouchableOpacity} from "react-native";
 import {FontAwesomeIcon as FontAwesomeNative} from "@fortawesome/react-native-fontawesome";
-import {FontAwesomeIcon as FontAwesomeReact} from "@fortawesome/react-fontawesome";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 import React from "react";
 import {flattenStyle} from "../component";
-import {bgDanger} from "../../../styles/colors";
 import {jCenter} from "../../../styles/markups";
 import {mainWidth} from "../../../styles/sizes";
 
@@ -72,6 +70,5 @@ function FAIcon(props: IFAIcon) {
     //         size={props.size ? sizes[props.size - 1]: 'lg'}
     //     />;
     // }
-    console.log(props.size, '..........', props.style)
     return <FontAwesomeNative icon={props.icon} style={props.style}/>
 }

@@ -7,10 +7,10 @@ export function RNView(props: IComponent) {
     if (props.visible === false) return null
     const style = flattenStyle(props.style)
     const children = ['string', 'number'].includes(typeof props.children) ?
-        <TextPrimary>{props.children}</TextPrimary>
+        <TextPrimary style={props.fontStyle}>{props.children}</TextPrimary>
         :
         props.children
-    if (props.onPress) return <TouchableOpacity style={style}>{children}</TouchableOpacity>
+    if (props.onPress) return <TouchableOpacity style={style} onPress={props.onPress}>{children}</TouchableOpacity>
     return <View style={style}>{children}</View>
 }
 
