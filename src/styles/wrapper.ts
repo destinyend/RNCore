@@ -8,8 +8,10 @@ export const headerStyle = {
     ...p2
 }
 
+
 export const bodyStyle = {
     ...headerStyle,
+    // @ts-ignore
     ...fixHeight(window.innerHeight - headerStyle.height - 1),
     ...bgSecondary
 }

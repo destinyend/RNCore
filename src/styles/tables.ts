@@ -1,22 +1,38 @@
-import {borderColor, borderStyle, borderWidth, noBorder, noRadius} from "./borders";
+import {border, borderColor, borderRightWidth, borderStyle, borderWidth, noBorder, noRadius} from "./borders";
 import {bold} from "./text";
 import {m0, mt1, p1, pr3} from "./margins";
-import {flex1, sEnd} from "./markups";
+import {aCenter, flex1, jCenter, sEnd} from "./markups";
 import {fixWidth, mainHeight} from "./sizes";
-import {bgPrimary} from "./colors";
+import {bgPrimary, bgSecondaryLight, primary} from "./colors";
 import {btnPrimary} from "./buttons";
 import {H4} from "../RNCore/components/text/headers";
 
-export const tableTitle = {...H4}
-export const tableBorder = {...borderWidth, ...borderColor, ...noRadius, ...borderStyle}
-export const tableStyle = {...tableBorder}
-export const tableHeader = {...tableBorder, ...bold, ...flex1, ...bgPrimary, ...mainHeight, ...m0}
-export const tableHeaderFont = {...btnPrimary.font}
+export const title = {...H4}
 
-export const tableRow = {...tableBorder}
-export const tableCell = {...tableBorder, ...flex1,  ...mainHeight}
+export const tableBorder = {...border, ...noRadius}
+export const headerBorder = tableBorder
+export const headerHeight = mainHeight
+
+export const headerBackground = bgPrimary
+export const headerFont = {...btnPrimary.font, ...bold}
+
+export const headerCellBorder = {
+    borderRightColor: border.borderRightColor,
+    //@ts-ignore
+    borderRightWidth: border.borderRightWidth,
+    //@ts-ignore
+    borderStyle: border.borderRightStyle
+}
+
+export const rowBorder = tableBorder
+export const rowHeight = mainHeight
+export const rowEvenBG = {backgroundColor: '#fff'}
+export const rowNotEvenBG = bgSecondaryLight
+export const rowFont = primary
+
+export const cellBorder = headerCellBorder
 
 export const tableValue = {...noBorder, ...flex1}
 export const tableNumber = {...sEnd}
 
-export const tableSelector = {...fixWidth(40)}
+export const tableCheckbox = {...fixWidth(40), ...jCenter, ...aCenter}

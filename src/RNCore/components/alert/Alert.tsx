@@ -14,19 +14,20 @@ import {
 } from "../../../styles/alert";
 import {ml1} from "../../../styles/margins";
 import {danger, primary, secondary, success, warning} from "../../../styles/colors";
+import FA from "../static/FA";
 
 
 export default function () {
     const {alert} = useContext(AppContext)
-
     return <Modal animationType={'fade'} visible={alert.state.visible} transparent={true}>
         <Pressable
+            //@ts-ignore
             style={alertWrapper}
             onPress={alert.hide}
         >
             <Pressable style={alertBox}>
                 <Row style={alertCloseBtnWrapper}>
-                    <Btn icon={faTimes} onPress={alert.hide} fontStyle={alertCloseBtn}/>
+                    <FA icon={faTimes} onPress={alert.hide} style={alertCloseBtn}/>
                 </Row>
                 <Row visible={!!alert.state.title} style={alertTitle}>
                     {alert.state.title}

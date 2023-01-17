@@ -1,7 +1,8 @@
 import React from "react";
 import {Col} from "../markup/markup";
-import {tableHeader, tableHeaderFont} from "../../../styles/tables";
+import {headerCellBorder, headerFont} from "../../../styles/tables";
 import {TStyle, TVoid} from "../../constants";
+import {flex1, jCenter} from "../../../styles/markups";
 
 export interface ITHeaderCell {
     label: string
@@ -10,9 +11,9 @@ export interface ITHeaderCell {
 }
 export default function (props: ITHeaderCell) {
     return <Col
-        style={[tableHeader, props.style]}
+        style={[flex1, jCenter, headerCellBorder, props.style]}
         onPress={props.onPress}
-        fontStyle={tableHeaderFont}
+        fontStyle={[jCenter, headerFont]}
     >
         {props.label}
     </Col>

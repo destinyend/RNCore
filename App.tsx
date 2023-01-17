@@ -1,17 +1,18 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {AppContext} from "./src/RNCore/appContexts/AppContext";
 import {IAlertShow, initialAlertState} from "./src/RNCore/appContexts/alert";
 import Header from "./src/wrapper/Header";
 import Body from "./src/wrapper/Body";
 import {View} from "react-native";
 import {initialNavigationState} from "./src/screens/_navigation";
+import Alert from "./src/RNCore/components/alert/Alert"
 
 export default function App() {
     const [alertState, setAlertState] = useState(initialAlertState)
     const [navigationState, setNavigationState] = useState(initialNavigationState)
 
     function showAlert(args: IAlertShow) {
-        setAlertState({...initialAlertState, ...args})
+        setAlertState({...args, visible: true})
     }
 
     function hideAlert() {
@@ -56,6 +57,7 @@ export default function App() {
             <Header/>
             <Body/>
         </View>
+        <Alert/>
     </AppContext.Provider>
 }
 

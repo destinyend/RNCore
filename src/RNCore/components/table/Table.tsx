@@ -1,15 +1,30 @@
 import {Col, Col1, Row1} from "../markup/markup";
-import {tableHeader, tableHeaderFont, tableSelector, tableTitle} from "../../../styles/tables";
+import {
+    tableBorder,
+    tableCheckbox,
+    headerBorder,
+    headerHeight,
+    headerFont,
+    headerBackground,
+    rowHeight,
+    rowBorder,
+    rowNotEvenBG,
+    rowEvenBG,
+    title, headerCellBorder
+} from "../../../styles/tables";
 import {RNText} from "../text/text";
 import React, {useState} from "react";
 import {pointer} from "../../../styles/cursors";
 import THeaderCell from "./THeaderCell";
-import TRow from "./TRow";
+import TRow, {ITRow} from "./TRow";
 import TextField from "../fields/TextField";
 import Checkbox from "../fields/Checkbox";
 import Creator, {IField} from "../complex/Creator";
 import Remover from "../complex/Remover";
-import {ITValue, TCell} from "./TValue";
+import {TCellKind} from "./TValue";
+import {flattenStyle} from "../component";
+import {TStyle} from "../../constants";
+import {flex1} from "../../../styles/markups";
 
 export interface IItem {
     label: string
@@ -18,7 +33,7 @@ export interface IItem {
 
 export interface ITCol {
     label: string
-    type: ITValue
+    type: TCellKind
     onChange?: (args: { id: string, value: any }) => void
     onRowClick?: (rowId: string) => void
     onHeaderClick?: (titleId: string) => void
@@ -27,29 +42,24 @@ export interface ITCol {
     items?: IItem[]
 }
 
-export interface ITRow {
-    id?: string
-    style?: object
-    cells: any[]
-}
-
 export interface ITable {
     visible?: boolean
     columns: ITCol[]
     data: ITRow[]
-    headerStyle?: object
+    headerStyle?: TStyle
+    style?: TStyle
     remove?: (id: string | string[]) => void
     create?: (args: object) => void
     createFields?: IField[]
     title?: string
-    sortable?: boolean
+    sortBy?: string[]
     filterBy?: string[]
     filterPlaceholder?: string
     filterType?: 'startsWith' | 'contains'
 }
 
 export default function (props: ITable) {
-    const [sortBy, setSortBy] = useState('id')
+    const [sortBy, setSortBy] = useState(0)
     const [reverse, setReverse] = useState(false)
     const initialSelected: string[] = []
     const [selected, setSelected] = useState(initialSelected)
@@ -81,10 +91,10 @@ export default function (props: ITable) {
         }
     }
 
-    if (reverse) { // @ts-ignore
-        props.data.sort((a, b) => a[sortBy] < b[sortBy])
-    } else { // @ts-ignore
-        props.data.sort((a, b) => a[sortBy] > b[sortBy])
+    if (reverse) {//@ts-ignore
+        props.data.sort((a, b) => a.cells[sortBy] < b.cells[sortBy] ? 1: -1)
+    } else {//@ts-ignore
+        props.data.sort((a, b) => a.cells[sortBy] > b.cells[sortBy] ? 1: -1)
     }
 
     function filterRow(row: ITRow) {
@@ -92,21 +102,19 @@ export default function (props: ITable) {
         for (let field of props.filterBy) {
             for (let i = 0; i < props.columns.length; i++) {
                 if (props.columns[i].fieldName === field) {
-                    if (props.filterType === 'contains') return row.cells[i].includes(filter)
-                    else return row.cells[i].startsWith(filter)
+                    if (props.filterType === 'contains') { // @ts-ignore
+                        return row.cells[i].includes(filter)
+                    }
+                    else { // @ts-ignore
+                        return row.cells[i].startsWith(filter)
+                    }
                 }
             }
         }
     }
 
-    return <Col1>
+    return <Col1 style={[tableBorder, props.style]}>
         <Row1>
-            {!!props.remove && <Col style={tableSelector}>
-                <Checkbox
-                    value={props.data.length === selected.length}
-                    onChange={selectAll}
-                />
-            </Col>}
             <TextField
                 visible={!!props.filterBy}
                 placeholder={props.filterPlaceholder || 'поиск'}
@@ -117,26 +125,33 @@ export default function (props: ITable) {
                 //@ts-ignore
                 fields={props.createFields}
             />}
-            {!!props.remove && <Remover
+            {(!!props.remove && !!selected.length) && <Remover
                 onPress={remove}
             />}
         </Row1>
         <RNText
             visible={!!props.visible}
-            style={tableTitle}
+            style={title}
         >
             {props.title}
         </RNText>
-        <Row1>
+        <Row1 style={[flex1, headerBorder, headerBackground, headerHeight, props.headerStyle]}>
+            {!!props.remove && <Col style={tableCheckbox}>
+                <Checkbox
+                    value={props.data.length === selected.length}
+                    onChange={selectAll}
+                />
+            </Col>}
             {props.columns.map((column, key) => {
                 function sort() {
-                    if (column.fieldName === sortBy) setReverse(!reverse)
-                    else setSortBy(column.fieldName)
+                    if (key === sortBy) setReverse(!reverse)
+                    else setSortBy(key)
                 }
 
-                let onPress = props.sortable ? sort : undefined
+                let onPress
+                if (props.sortBy?.length && props.sortBy.includes(column.fieldName)) onPress = sort
                 return <THeaderCell
-                    style={[tableHeader, props.headerStyle, column.style]}
+                    style={[column.style, key && key!== props.columns.length-1 ? headerCellBorder : null]}
                     label={column.label}
                     onPress={onPress}
                     key={key}
@@ -147,11 +162,12 @@ export default function (props: ITable) {
             const cursor = !props.columns[key]?.onRowClick ? {} : pointer
             return <TRow
                 key={key}
-                style={[style, cursor]}
+                style={[flex1, rowBorder, rowHeight, key % 2 ? rowEvenBG : rowNotEvenBG, style, cursor]}
                 cells={cells}
-                onSelect={id ? () => onSelect(id) : undefined}
+                onSelect={id && !!props.remove ? () => onSelect(id) : undefined}
                 variants={[]}
                 selected={id ? selected.includes(id) : false}
+                // @ts-ignore
                 types={props.columns.map((col, key) => col.type)}
             />
         })}

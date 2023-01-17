@@ -6,6 +6,7 @@ import Complex from "./Complex";
 import Styles from "./Styles";
 import Media from "./Media";
 import Tables from "./Tables";
+import Alerts from "./Alerts";
 
 interface IScreen {
     title: string
@@ -14,7 +15,7 @@ interface IScreen {
     inHeader: boolean
 }
 
-const firstScreen = 'tables'
+const firstScreen = 'alerts'
 export const screen_list: IScreen[] = [
     {title: 'разметка', name: 'markup', Component: Markup, inHeader: true},
     {title: 'кнопки', name: 'buttons', Component: Buttons, inHeader: true},
@@ -24,6 +25,7 @@ export const screen_list: IScreen[] = [
     {title: 'составные', name: 'complex', Component: Complex, inHeader: true},
     {title: 'медиа', name: 'media', Component: Media, inHeader: true},
     {title: 'таблицы', name: 'tables', Component: Tables, inHeader: true},
+    {title: 'алерт', name: 'alerts', Component: Alerts, inHeader: true},
 ]
 
 export interface INavigationState {

@@ -4,20 +4,24 @@ import TCell, {ITCell} from "./TCell";
 import {TVoid} from "../../constants";
 import Checkbox from "../fields/Checkbox";
 import {IVariant} from "../fields/Select";
-import {ITValue} from "./TValue";
+import {ITValue, TCellKind, TCellVal} from "./TValue";
+import {mainHeight} from "../../../styles/sizes";
+import {cellBorder, tableCheckbox} from "../../../styles/tables";
+import {flex1} from "../../../styles/markups";
+import {flattenStyle} from "../component";
 
 export interface ITRow {
     onSelect?: (selected: boolean) => void
     style?: object
-    cells: ITCell[]
+    cells: TCellVal[]
     variants?: IVariant[][]
     selected?: boolean
-    types: ITValue[]
+    id?: string
 }
 
 export default function (props: ITRow) {
-    return <Row1>
-        {!!props.onSelect && <Col>
+    return <Row1 style={props.style}>
+        {!!props.onSelect && <Col style={[flex1, tableCheckbox]}>
             <Checkbox
                 value={props.selected === true}
                 onChange={() => {
@@ -28,9 +32,10 @@ export default function (props: ITRow) {
         {props.cells.map((cell,key) => {
             return <TCell
                 key={key}
-                {...cell}
-                type={props.types[key].type}
-                value={cell.value}
+                style={key && key !== props.cells.length-1 ? cellBorder: null}
+                //@ts-ignore
+                type={props.types[key]}
+                value={cell}
                 variants={props.variants ? props.variants[key]: []}
             />
         })}

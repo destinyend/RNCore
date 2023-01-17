@@ -8,15 +8,17 @@ import Select, {IVariant} from "../fields/Select";
 import NumberField from "../fields/NumberField";
 import {tableNumber, tableValue} from "../../../styles/tables";
 import TimeField from "../fields/TimeField";
+import URL from "../text/URL";
 
-export type TCell = 'textField' | 'numberField' | 'dateField' | 'select' | 'timeField' | 'text' | 'rub' | 'percent' |
-    'number'
+export type TCellKind = 'textField' | 'numberField' | 'dateField' | 'select' | 'timeField' | 'text' | 'rub' |
+    'percent' | 'number'| 'jsx' | 'url'
 
+export type TCellVal = string | number | null | JSX.Element
 export interface ITValue {
-    type: TCell
-    value: number | string
-    onChange: TVoid
-    variants: IVariant[]
+    type: TCellKind
+    value: TCellVal
+    onChange?: TVoid
+    variants?: IVariant[]
 }
 
 export default function (props: ITValue) {
@@ -38,9 +40,9 @@ export default function (props: ITValue) {
             // @ts-ignore
             return <DateField {...fieldProps}/>
         case 'select':
-            // @ts-ignore
             return <Select
                 {...fieldProps}
+                // @ts-ignore
                 variants={props.variants}
             />
         case 'rub':
@@ -49,8 +51,13 @@ export default function (props: ITValue) {
             return <Percent style={tableNumber}>{props.value}</Percent>
         case 'number':
             return <Numeric style={tableNumber}>{props.value}</Numeric>
+        case 'url':
+            return <URL url={String(props.value)}/>
+        case 'jsx':
+            const Comp = props.value
+            // @ts-ignore
+            return <Comp/>
         default:
             return <TextPrimary>{props.value}</TextPrimary>
-
     }
 }

@@ -5,11 +5,12 @@ import React from "react";
 import {flattenStyle} from "../component";
 import {jCenter} from "../../../styles/markups";
 import {mainWidth} from "../../../styles/sizes";
+import {TStyle} from "../../constants";
 
 
 export interface IFA {
     icon: IconDefinition | null | undefined
-    style?: object
+    style?: TStyle
     visible?: boolean
     onPress?: () => void
     size?: number
@@ -26,21 +27,21 @@ export default function (props: IFA) {
         >
             <FAIcon
                 icon={props.icon}
-                style={flattenStyle(props.style)}
+                style={props.style}
                 size={props.size}
             />
         </TouchableOpacity>
     }
     return <FAIcon
         icon={props.icon}
-        style={flattenStyle([{width: mainWidth.minWidth}, props.style])}
+        style={[{width: mainWidth.minWidth}, props.style]}
         size={props.size}
     />
 }
 
 interface IFAIcon {
     icon: IconDefinition
-    style: object
+    style: TStyle
     size?: number
 }
 
@@ -70,5 +71,5 @@ function FAIcon(props: IFAIcon) {
     //         size={props.size ? sizes[props.size - 1]: 'lg'}
     //     />;
     // }
-    return <FontAwesomeNative icon={props.icon} style={props.style}/>
+    return <FontAwesomeNative icon={props.icon} style={flattenStyle(props.style)}/>
 }

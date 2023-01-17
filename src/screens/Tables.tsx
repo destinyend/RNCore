@@ -1,5 +1,6 @@
 import {Col1} from "../RNCore/components/markup/markup";
 import Table, {ITCol} from "../RNCore/components/table/Table";
+import {ITRow} from "../RNCore/components/table/TRow";
 
 export default function () {
     let columns: ITCol[];
@@ -10,15 +11,17 @@ export default function () {
         {label: 'percent', fieldName: 'percent', type: 'percent'},
     ];
 
-    const data = [
-        {cells: ['some', 1000, 40000, 25]},
-        {cells: ['text', 2000, 50000, 35]},
-        {cells: ['test', 7000, 60000, 45]},
+    const rows: ITRow[] = [
+        {cells: ['some', 1000, 40000, 25], id: '1'},
+        {cells: ['text', 2000, 50000, 35], id: '2'},
+        {cells: ['test', 7000, 60000, 45], id: '3'},
     ]
     return <Col1>
         <Table
+            sortBy={['text', 'number', 'percent', 'rub']}
             columns={columns}
-            data={data}
+            data={rows}
+            remove={() => {}}
         />
     </Col1>
 }

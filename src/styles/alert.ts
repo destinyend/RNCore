@@ -1,22 +1,24 @@
 import {fixHeight, fixWidth} from "./sizes";
-import {bgSecondary} from "./colors";
-import {textPrimary, textTitle} from "./text";
-import {aRight} from "./markups";
+import {bgSecondary, bgSecondaryLight} from "./colors";
+import {h3Style, textPrimary} from "./text";
+import {aCenter, jCenter, jEnd} from "./markups";
 
 export const alertWrapper = {
     flex: 1,
-    background: '#000',
-    opacity: 0.3
+    opacity: 0.1,
+    paddingTop: '15%',
+    ...aCenter
 }
 
 export const alertBox = {
     ...fixWidth(300),
     ...fixHeight(200),
-    backgroundColor: bgSecondary.backgroundColor
+    backgroundColor: bgSecondaryLight.backgroundColor,
+    opacity: 1
 }
 
 export const alertTitle = {
-    ...textTitle,
+    ...h3Style,
 }
 
 export const alertBody = {
@@ -24,7 +26,7 @@ export const alertBody = {
 }
 
 export const alertCloseBtnWrapper = {
-    ...aRight
+    ...jEnd
 }
 
 export const alertCloseBtn = {

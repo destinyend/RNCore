@@ -1,7 +1,7 @@
-import {primary} from "./colors";
+import {primary, primaryLight} from "./colors";
 
 export const checkBoxOn = {
-    ...primary
+    ...primaryLight
 }
 
 export const checkBoxOff = {
