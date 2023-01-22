@@ -6,7 +6,10 @@ export default function () {
     const {alert} = useContext(AppContext)
 
     useEffect(() => {
-        if (!alert.state.visible) alert.show({})
+        if (!alert.state.visible) alert.show({
+            title: 'заголовок',
+            body: 'текст сообщения'
+        })
     }, [])
 
     return <Col/>

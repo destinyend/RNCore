@@ -1,20 +1,19 @@
-import {fixHeight, fixWidth} from "./sizes";
-import {bgSecondary, bgSecondaryLight} from "./colors";
+import {bgSecondaryLight} from "./colors";
 import {h3Style, textPrimary} from "./text";
-import {aCenter, jCenter, jEnd} from "./markups";
+import {aCenter, flex1} from "./markups";
+import {tableBorder} from "./tables";
+import {mv2, p2} from "./margins";
 
-export const alertWrapper = {
-    flex: 1,
-    opacity: 0.1,
-    paddingTop: '15%',
-    ...aCenter
+export const alertSplash = {
+    ...flex1,
+    ...aCenter,
+    paddingTop: '15%'
 }
 
 export const alertBox = {
-    ...fixWidth(300),
-    ...fixHeight(200),
     backgroundColor: bgSecondaryLight.backgroundColor,
-    opacity: 1
+    ...tableBorder,
+    ...p2
 }
 
 export const alertTitle = {
@@ -23,12 +22,6 @@ export const alertTitle = {
 
 export const alertBody = {
     ...textPrimary,
+    ...mv2
 }
 
-export const alertCloseBtnWrapper = {
-    ...jEnd
-}
-
-export const alertCloseBtn = {
-
-}

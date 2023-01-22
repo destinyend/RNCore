@@ -10,6 +10,7 @@ import Alert from "./src/RNCore/components/alert/Alert"
 export default function App() {
     const [alertState, setAlertState] = useState(initialAlertState)
     const [navigationState, setNavigationState] = useState(initialNavigationState)
+    const [state, setState] = useState(initialState)
 
     function showAlert(args: IAlertShow) {
         setAlertState({...args, visible: true})
