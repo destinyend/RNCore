@@ -15,7 +15,7 @@ interface IScreen {
     inHeader: boolean
 }
 
-const firstScreen = 'alerts'
+const firstScreen = 'markup'
 export const screen_list: IScreen[] = [
     {title: 'разметка', name: 'markup', Component: Markup, inHeader: true},
     {title: 'кнопки', name: 'buttons', Component: Buttons, inHeader: true},
